@@ -1,16 +1,19 @@
 # Docker Data Warehouse stack with Airflow and PostgreSQL
 
-This is a template for a simple data warehouse project using Airflow and PostgreSQL in Docker containers.
+This is a template for a simple data warehouse project using Airflow and PostgreSQL in Docker containers. Tested using CentOS.
 
 ## Configuration
 
 There are three configuration files that needs to be set up in the *environment* folder. Add desired usernames, password etc.
 
-In addition the folder structure is created by running `init.sh`. If in a Windows environment you could create the folders manually.
+In addition the folder structure is created by running `init.sh` (remember to `chmod +x init.sh`). If in a Windows environment you could create the folders manually.
 
 ## Folder structure
 
-CodeStorage is where Python scripts for ETL is stored. Whether the transformations should be performed as part of the DAG specification directly or in a dedicated Python script is up to you. DataStorage is for storing flat files as an intermidery step, development, debugging etc. 
+- *CodeStorage* is where Python scripts for ETL is stored. Whether the transformations should be performed as part of the DAG specification directly or in a dedicated Python script is up to you.
+- *DataStorage* is for storing flat files as an intermidery step, development, debugging etc.
+- Data base initiation scripts are in *Postgres*. All credentials, environment variables etc. are in *environment*. 
+- The DAG's for Airflow are stored in *airflow/dags*
 
 ## Possible extensions
 - [PGWatch](https://github.com/cybertec-postgresql/pgwatch2) for monitoring
