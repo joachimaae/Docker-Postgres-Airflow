@@ -1,0 +1,58 @@
+version: "3.5"
+services:
+  postgres:
+    image: "postgres"
+    container_name: "Datavarehus"
+    env_file: environment/.postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./Postgres:/docker-entrypoint-initdb.d
+    networks:
+      - dwh_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: "pgAdmin"
+    depends_on:
+      - postgres
+    env_file: environment/.pgadm
+    volumes:
+      - ./pgadmin:/root/.pgadmin
+    ports:
+      - "80:80"
+    networks:
+      - dwh_network
+
+
+  webserver:
+        image: puckel/docker-airflow:1.10.4
+        restart: always
+        container_name: "airflow"
+        depends_on:
+            - postgres
+        env_file: environment/.airflow
+        volumes:
+            - ./airflow/dags:/usr/local/airflow/dags
+            - ./requirements.txt:/requirements.txt
+            - ./CodeStorage/:/CodeStorage/
+            - ./DataStorage/:/DataStorage/
+            - ./Postgres:/Postgres/
+            - /home/:/home/
+            # Uncomment to include custom plugins
+            # - ./plugins:/usr/local/airflow/plugins
+        ports:
+            - "8080:8080"
+        command: webserver
+        healthcheck:
+            test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+            interval: 30s
+            timeout: 30s
+            retries: 3
+        networks:
+           - dwh_network
+
+networks:
+  dwh_network:
+    driver: bridge

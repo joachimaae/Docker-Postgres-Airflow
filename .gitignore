@@ -1,0 +1,9 @@
+DataStorage/**/
+credentials.json
+postgres-data/**
+pgadmin/**
+.postgres
+.vscode/
+.pgadm
+.airflow
+__pycache__/

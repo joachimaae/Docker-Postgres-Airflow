@@ -1,0 +1,10 @@
+CodeStorage
+CodeStorage Extract
+CodeStorage Transform
+CodeStorage Extract DATASOURCE
+CodeStorage Transform DATASOURCE
+DataStorage
+DataStorage Extract
+DataStorage Transform
+DataStorage Extract DATASOURCE
+DataStorage Transform DATASOURCE
