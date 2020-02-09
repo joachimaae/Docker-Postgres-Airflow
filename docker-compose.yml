@@ -25,33 +25,44 @@ services:
     networks:
       - dwh_network
 
+  airflow:
+    image: puckel/docker-airflow:1.10.4
+    restart: always
+    container_name: "airflow"
+    depends_on:
+        - postgres
+    env_file: environment/.airflow
+    volumes:
+        - ./airflow/dags:/usr/local/airflow/dags
+        - ./requirements.txt:/requirements.txt
+        - ./CodeStorage/:/CodeStorage/
+        - ./DataStorage/:/DataStorage/
+        - ./Postgres:/Postgres/
+        - /home/:/home/
+        # Uncomment to include custom plugins
+        # - ./plugins:/usr/local/airflow/plugins
+    ports:
+        - "8080:8080"
+    command: webserver
+    healthcheck:
+        test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+        interval: 30s
+        timeout: 30s
+        retries: 3
+    networks:
+       - dwh_network
 
-  webserver:
-        image: puckel/docker-airflow:1.10.4
-        restart: always
-        container_name: "airflow"
-        depends_on:
-            - postgres
-        env_file: environment/.airflow
-        volumes:
-            - ./airflow/dags:/usr/local/airflow/dags
-            - ./requirements.txt:/requirements.txt
-            - ./CodeStorage/:/CodeStorage/
-            - ./DataStorage/:/DataStorage/
-            - ./Postgres:/Postgres/
-            - /home/:/home/
-            # Uncomment to include custom plugins
-            # - ./plugins:/usr/local/airflow/plugins
-        ports:
-            - "8080:8080"
-        command: webserver
-        healthcheck:
-            test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
-            interval: 30s
-            timeout: 30s
-            retries: 3
-        networks:
-           - dwh_network
+  code-server:
+    container_name: code-server
+    image: codercom/code-server
+    ports:
+        - "3000:8080"
+    volumes:
+        - "${PWD}:/home/coder/project"
+        #- "${HOME}/.local/share/code-server:/home/coder/.local/share/code-server"
+    env_file: environment/.coder
+    networks:
+        - dwh_network
 
 networks:
   dwh_network:
