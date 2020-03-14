@@ -1,7 +1,9 @@
 LOAD_EX=n
 EXECUTOR=Local
 AIRFLOW_HOME=/usr/local/airflow
-POSTGRES_PASSWORD=flytpass
 AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow@postgres:5432/airflow
-AIRFLOW__CONN__DATAWAREHOUSE=postgresql+psycopg2://<ADMINUSER>:<PASSWORD>@postgres:5432/dwh
+
+# Change these, and corresponding in Postgres/4_users.sql and .postgres
+POSTGRES_PASSWORD=flytpass
+AIRFLOW__CONN__DATAWAREHOUSE='postgresql+psycopg2://adminuser:somethingtricky123@postgres:5432/dwh'
 

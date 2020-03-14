@@ -6,4 +6,5 @@ pgadmin/**
 .vscode/
 .pgadm
 .airflow
+.coder
 __pycache__/

@@ -1,4 +1,4 @@
-# Databasesetup
-POSTGRES_USER=
-POSTGRES_PASSWORD= 
-POSTGRES_DB=
+# Database setup, change the username and password
+POSTGRES_USER=adminuser
+POSTGRES_PASSWORD=somethingtricky123
+POSTGRES_DB=dwh

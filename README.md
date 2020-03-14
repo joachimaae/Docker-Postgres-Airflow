@@ -1,22 +1,26 @@
 # Docker Data Warehouse stack with Airflow and PostgreSQL
 
-This is a template for a simple data warehouse project using Airflow and PostgreSQL in Docker containers. Tested using CentOS.
+This is a template for a simple data warehouse project using Airflow and PostgreSQL in Docker containers, together with some utilities like code-server and PGAdmin.
+
+**NB: This is not production ready, or even close to it.**
 
 ## Configuration
 
-There are three configuration files that needs to be set up in the *environment* folder. Add desired usernames, password etc.
-
-In addition the folder structure is created by running `init.sh` (remember to `chmod +x init.sh`). If in a Windows environment you could create the folders manually.
+1. Run `init.sh` (remember to `chmod +x init.sh`). This creates the folder structure as well as copies over and renames the example config files.
+2. Modify config files in ./environment/ and database startup files in ./Postgres/
+3. docker-compose up
 
 ## Folder structure
 
 - *CodeStorage* is where Python scripts for ETL is stored. Whether the transformations should be performed as part of the DAG specification directly or in a dedicated Python script is up to you.
 - *DataStorage* is for storing flat files as an intermidery step, development, debugging etc.
-- Data base initiation scripts are in *Postgres*. All credentials, environment variables etc. are in *environment*. 
+- Database initiation scripts are in *Postgres*. All credentials, environment variables etc. are in *environment*. 
 - The DAG's for Airflow are stored in *airflow/dags*
 
-## Possible extensions
-- [PGWatch](https://github.com/cybertec-postgresql/pgwatch2) for monitoring
+## Possible expansions / utilities
+- [PGWatch](https://github.com/cybertec-postgresql/pgwatch2)
+- [Portainer](https://www.portainer.io/)
+- [Netdata](https://www.netdata.cloud/)
 
 ## Useful links
 

@@ -1,3 +1,4 @@
-PGADMIN_DEFAULT_EMAIL=
-PGADMIN_DEFAULT_PASSWORD=
+# login to PGAdmin, change these to personal values
+PGADMIN_DEFAULT_EMAIL=random@emailprovider.com
+PGADMIN_DEFAULT_PASSWORD=somethingtricky123
 
