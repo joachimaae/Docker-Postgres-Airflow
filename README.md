@@ -10,12 +10,24 @@ This is a template for a simple data warehouse project using Airflow and Postgre
 2. Modify config files in ./environment/ and database startup files in ./Postgres/
 3. docker-compose up
 
-## Folder structure
+Wait until it is done initializing. Afterwards you can visit:
+
+ - `localhost` for PGAdmin
+ - `localhost`:3000 for code-server
+ - `localhost`:8080 for airflow
+
+If ran on a separate server, replace `localhost` with the hostname or IP of your server.
+
+ Now you have a running datawarehouse in Docker.
+
+## Usage
 
 - *CodeStorage* is where Python scripts for ETL is stored. Whether the transformations should be performed as part of the DAG specification directly or in a dedicated Python script is up to you.
 - *DataStorage* is for storing flat files as an intermidery step, development, debugging etc.
 - Database initiation scripts are in *Postgres*. All credentials, environment variables etc. are in *environment*. 
 - The DAG's for Airflow are stored in *airflow/dags*
+
+Refer to online guides for instructions for using Airflow, PostgreSQL etc.
 
 ## Possible expansions / utilities
 - [PGWatch](https://github.com/cybertec-postgresql/pgwatch2)

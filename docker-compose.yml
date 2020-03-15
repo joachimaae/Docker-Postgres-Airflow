@@ -20,6 +20,7 @@ services:
     env_file: environment/.pgadm
     volumes:
       - ./pgadmin:/root/.pgadmin
+      - ./environment/servers.json:/pgadmin4/servers.json
     ports:
       - "80:80"
     networks:

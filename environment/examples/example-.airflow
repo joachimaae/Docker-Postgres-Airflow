@@ -5,5 +5,4 @@ AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow@postgres:5432/airf
 
 # Change these, and corresponding in Postgres/4_users.sql and .postgres
 POSTGRES_PASSWORD=flytpass
-AIRFLOW__CONN__DATAWAREHOUSE='postgresql+psycopg2://adminuser:somethingtricky123@postgres:5432/dwh'
-
+AIRFLOW_CONN_DATAWAREHOUSE=postgresql+psycopg2://adminuser:somethingtricky123@postgres:5432
